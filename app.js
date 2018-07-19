@@ -16,7 +16,8 @@ var mongoose = require("mongoose"),
         indexRoutes = require("./routes/index");
     
 
-mongoose.connect("mongodb://localhost/yelp_camp");
+//mongoose.connect("mongodb://localhost/yelp_camp");
+mongoose.connect("mongodb://jkaberon:securepassword1@ds243501.mlab.com:43501/project_adsdfjkl");
 app.set("view engine","ejs");
 app.use(bp.urlencoded({extended:true}));
 app.use(methodOverride("_method"));

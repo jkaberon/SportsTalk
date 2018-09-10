@@ -1,6 +1,6 @@
 var express = require("express");
 var router = express.Router();
-var Campground = require("../models/campground");
+var post = require("../models/post");
 var Comment = require("../models/comment");
 var User = require("../models/user"),
     passport = require("passport");
@@ -22,7 +22,7 @@ router.post('/register', function(req,res){
         }
         passport.authenticate('local')(req, res, function(){
             req.flash("success","Welcome to YelpCamp");
-            res.redirect("/campgrounds");
+            res.redirect("/posts");
         });
     });
 });
@@ -35,7 +35,7 @@ router.get('/login', function(req,res){
 
 //authenticate is middleware - runs before callback
 router.post('/login', passport.authenticate('local', {
-    successRedirect: '/campgrounds',
+    successRedirect: '/posts',
     failureRedirect: '/login',
     failureFlash: true
 }));

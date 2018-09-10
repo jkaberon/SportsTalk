@@ -1,0 +1,47 @@
+<% include ../partials/header %>
+<!--<h1>Show Template</h1>-->
+
+<h2 class="show_title"><%= post.title %> &emsp;
+<% if(req.user && req.user.username==post.author.username){ %>
+    <a class="btn btn-warning" href="/posts/<%= post._id %>/edit">Edit</a>
+<form class="delete-form" action="/posts/<%= post._id%>?_method=DELETE" method="POST">
+    <button class="btn btn-danger">Delete</button>
+</form>
+<% } %>
+</h2>
+<div class="text-right"><em><span class="sub_by">Submitted By <%= post.author.username %></span></em></div>
+
+<div class="col-md-9">
+    <div class="thumbnail">
+        <img src="<%= post.image %>" class="img-responsive">
+        <div class="caption-full">
+            <!--<h4 class="pull-right"></h4>-->
+            <br>
+            <p><%= post.description %></p>
+        </div>
+    </div>
+    <div class="well">
+        <!--<span class="text-center">Comments</span>-->
+        <div class="text-right">
+             <a class="btn btn-success" href="/posts/<%= post._id %>/comments/new">Add new comment</a>
+        </div>
+    </div>
+    <% post.comments.forEach(function(comment){ %>
+    <div class="row">
+        <div class="col-md-12">
+            <strong><%= comment.author.username %></strong>
+            <p>
+                <%= comment.text %>
+            </p>
+        </div>
+    <% if(req.user && req.user.username==comment.author.username){ %>
+    <a class="btn btn-xs btn-warning" href="/posts/<%= post._id %>/comments/<%= comment._id %>/edit">Edit</a>
+    <form class="delete-form" action="/posts/<%= post._id %>/<%= comment._id %>?_method=DELETE" method="POST">
+        <input type="submit" class="btn btn-xs btn-danger" value="delete">  
+    </form>
+    <% } %>
+    <% }) %>
+    </div>
+</div>
+<br>
+<% include ../partials/footer %>

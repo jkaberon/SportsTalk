@@ -3,21 +3,18 @@ var app = express();
 var bp = require("body-parser");
 var mongoose = require("mongoose"),
     flash = require("connect-flash"),
-    Campground = require("./models/campground"),
+    post = require("./models/post"),
     Comment = require("./models/comment"),
     User = require("./models/user"),
     passport = require("passport"),
     LocalStrategy = require("passport-local"),
-    methodOverride = require("method-override"),
-    seedDb = require("./seeds");
+    methodOverride = require("method-override");
     
-    var commentRoutes = require("./routes/comments"),
-        campgroundRoutes = require("./routes/campgrounds"),
-        indexRoutes = require("./routes/index");
-    
+var commentRoutes = require("./routes/comments"),
+    postRoutes = require("./routes/posts"),
+    indexRoutes = require("./routes/index");
 
-//mongoose.connect("mongodb://localhost/yelp_camp");
-mongoose.connect("mongodb://jkaberon:securepassword1@ds243501.mlab.com:43501/project_adsdfjkl");
+mongoose.connect(process.env.DATABASE_URL);
 app.set("view engine","ejs");
 app.use(bp.urlencoded({extended:true}));
 app.use(methodOverride("_method"));
@@ -44,7 +41,7 @@ app.use(function(req,res,next){ //pass req to all templates
     next();
 });
 
-// Campground.create({
+// post.create({
 //      name:"salmon",image:"",
 //      description: "SOmething something whatever"
 // }, function(err,cg){
@@ -52,20 +49,21 @@ app.use(function(req,res,next){ //pass req to all templates
 //     else console.log(cg);
 // });
 
-//  var campgrounds = [
+//  var posts = [
        
 //     ];
 
 app.get("/",function(req,res){
-    res.render("landing");
+    res.render("startpage");
 });
 
 app.use(indexRoutes);
-app.use(campgroundRoutes);
+app.use(postRoutes);
 app.use(commentRoutes);
 
 app.listen(process.env.PORT,process.env.IP,function(){
     console.log("yelpserver started");
+    //console.log(process.env.DATABASE_URL);
 });
 
 //db.[collection].drop() to delete all items in db

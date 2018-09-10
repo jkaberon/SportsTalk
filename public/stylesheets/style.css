@@ -2,6 +2,34 @@
     display: inline;
 }
 
+.show_img {
+    width: 50%;
+    height: 30%;
+    margin-left: 5%;
+    /*margin-right: auto;*/
+}
+
+.show_title {
+    margin-left: 20%;
+}
+
+.show_desc {
+    margin: 2em;
+}
+
+.thumbnail {
+    padding: 0;
+}
+
+.row {
+    margin: auto;
+    /*padding: 1%;*/
+}
+
+.sub_by {
+    padding: 10%;
+}
+
 /*body {*/
 /*    background:purple;*/
 /*}*/

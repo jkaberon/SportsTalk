@@ -49,5 +49,5 @@ app.use(postRoutes);
 app.use(commentRoutes);
 
 app.listen(process.env.PORT,process.env.IP,function(){
-    console.log("yelpserver started");
+    console.log("server started");
 });

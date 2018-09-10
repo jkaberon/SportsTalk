@@ -19,10 +19,9 @@ app.set("view engine","ejs");
 app.use(bp.urlencoded({extended:true}));
 app.use(methodOverride("_method"));
 app.use(express.static(__dirname + '/public'));
-//seedDb();
 
 app.use(require("express-session")({
-    secret: "whatever",
+    secret: process.env.SECRET,
     resave: false,
     saveUninitialized: false
 }));
@@ -41,18 +40,6 @@ app.use(function(req,res,next){ //pass req to all templates
     next();
 });
 
-// post.create({
-//      name:"salmon",image:"",
-//      description: "SOmething something whatever"
-// }, function(err,cg){
-//     if(err)console.log(err);
-//     else console.log(cg);
-// });
-
-//  var posts = [
-       
-//     ];
-
 app.get("/",function(req,res){
     res.render("startpage");
 });
@@ -63,7 +50,4 @@ app.use(commentRoutes);
 
 app.listen(process.env.PORT,process.env.IP,function(){
     console.log("yelpserver started");
-    //console.log(process.env.DATABASE_URL);
 });
-
-//db.[collection].drop() to delete all items in db

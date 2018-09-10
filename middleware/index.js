@@ -14,10 +14,7 @@ mid.checkAuth = function(req,res,next){
             res.redirect("/posts");
         }
         else {
-            //console.log(p.author.id);
-            //console.log(req.user._id);
             if(p && p.author.id && p.author.id.equals(req.user._id))
-             //res.render("campgrounds/edit",{campground:cg});
              next();
             else {
                 req.flash("error","That isn't your post");
@@ -35,10 +32,7 @@ mid.checkComm = function(req,res,next){
     Comment.findById(req.params.comm_id, function(err,comm){
         if(err)res.redirect("back");
         else {
-            //console.log(p.author.id);
-            //console.log(req.user._id);
             if(comm.author.id.equals(req.user._id))
-             //res.render("campgrounds/edit",{campground:cg});
              next();
             else res.redirect("back");
         }    

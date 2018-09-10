@@ -9,7 +9,6 @@ var User = require("../models/user"),
 
 //INDEX - display list
 router.get("/posts",function(req,res){
-    //res.render("posts",{posts:posts});
     //get all posts from db
     Post.find({},function(err,posts){
         if(err)console.log(err);
@@ -24,7 +23,6 @@ router.post("/posts",mid.isLoggedIn,function(req,res){
     var title=req.body.title;
     var image = req.body.image;
     var desc = req.body.description;
-    //posts.push({name:name,image:image});
     Post.create({title:title,image:image,description:desc},function(err,p){
         if(err)console.log(err);
         p.author.id = req.user._id;
@@ -53,12 +51,6 @@ router.get("/posts/:id", function(req,res){
    });
    //show more info about p
 });
-
-// post.findById("5b35485c75c54711f0cb8cdd",function(err,p){
-//     if(err)console.log(err);
-//     else p.image = "https://www.nationalparks.nsw.gov.au/-/media/npws/images/parks/munmorah-state-conservation-area/background/freemans-post-background.jpg";
-//     p.save();
-// });
 
 //EDIT
 router.get("/posts/:id/edit", mid.checkAuth, function(req,res){

@@ -14,7 +14,9 @@ var commentRoutes = require("./routes/comments"),
     postRoutes = require("./routes/posts"),
     indexRoutes = require("./routes/index");
 
-mongoose.connect(process.env.DATABASE_URL);
+mongoose.connect(process.env.DATABASE_URL, {
+    useNewUrlParser: true
+});
 app.set("view engine","ejs");
 app.use(bp.urlencoded({extended:true}));
 app.use(methodOverride("_method"));
@@ -49,5 +51,7 @@ app.use(postRoutes);
 app.use(commentRoutes);
 
 app.listen(process.env.PORT,process.env.IP,function(){
-    console.log("server started");
+    console.log(`server listening on ${process.env.IP}:${process.env.PORT}`);
+    // console.log(process.env.IP);
+    // console.log(process.env.PORT);
 });

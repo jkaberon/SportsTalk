@@ -1,3 +1,20 @@
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+}
+
+.footer {
+    position: absolute;
+    bottom: 0;
+    height: 60px;
+    /*font-size: 100px;*/
+    background-color: blue;
+}
+
 .delete-form {
     display: inline;
 }
